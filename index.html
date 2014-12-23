@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>2014</title>
+</head>
+<body>
+
+<canvas id="everyday"></canvas>
+
+<script src="bundle.js"></script>
+<script>
+(function(bundle){
+  var canvas = document.querySelector('canvas');
+  canvas.height = bundle.imageSize;
+  canvas.width = bundle.imageSize;
+
+  bundle.preload(bundle.getImages('./tmp'), onPreload);
+
+  function onPreload(images){
+    var drawFn = bundle.getDrawFn(bundle.imageSize, bundle.imageSize, images.length);
+    var context = canvas.getContext('2d');
+
+    images.forEach(function(image, i){
+      bundle.drawFrame(context, drawFn, image, i);
+    });
+  }
+})(bundle);
+</script>
+</body>
+</html>
