@@ -22,7 +22,7 @@
     "palette": "^0.0.1"
   },
   "devDependencies": {
-    "browserify": "^7.0.3",
+    "browserify": "^8.0.2",
     "watchify": "^2.2.1"
   },
   "config": {

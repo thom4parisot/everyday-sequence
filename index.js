@@ -3,7 +3,7 @@
 var config = require('./package.json').config;
 
 module.exports = {
-  imageSize: config.imageSize,
+  imageSize: config.imageWidth,
 
   getImages: function(dir){
     return config.images.map(function(src){
