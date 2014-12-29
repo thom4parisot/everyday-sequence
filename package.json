@@ -1,7 +1,7 @@
 {
   "name": "everyday-2014",
-  "version": "1.0.0",
-  "description": "The year 2014 in pictures.",
+  "version": "1.0.1",
+  "description": "The year 2014 in 228 pictures.",
   "main": "index.js",
   "scripts": {
     "build": "browserify index.js -t brfs -s bundle -o bundle.js",
@@ -19,9 +19,7 @@
   "homepage": "https://github.com/oncletom/2014",
   "dependencies": {
     "brfs": "^1.2.0",
-    "es6-promise": "^2.0.1",
-    "global": "^4.3.0",
-    "palette": "0.0.1"
+    "palette": "^0.0.1"
   },
   "devDependencies": {
     "browserify": "^7.0.3",
@@ -47,7 +45,6 @@
       "IMG_20140126_102709.jpg",
       "IMG_20140127_090751.jpg",
       "IMG_20140128_090736.jpg",
-      "IMG_20140129_091153.jpg",
       "IMG_20140129_091533.jpg",
       "IMG_20140130_093725.jpg",
       "IMG_20140131_094510.jpg",
@@ -64,7 +61,6 @@
       "IMG_20140211_095622.jpg",
       "IMG_20140212_091733.jpg",
       "IMG_20140213_092058.jpg",
-      "IMG_20140214_092142.jpg",
       "IMG_20140214_092341.jpg",
       "IMG_20140215_113146.jpg",
       "IMG_20140216_132403.jpg",
@@ -94,7 +90,6 @@
       "IMG_20140320_084237.jpg",
       "IMG_20140321_083602.jpg",
       "IMG_20140322_115153.jpg",
-      "IMG_20140323_141153.jpg",
       "IMG_20140323_141509.jpg",
       "IMG_20140324_102443.jpg",
       "IMG_20140325_093108.jpg",
@@ -120,7 +115,6 @@
       "IMG_20140426_133953.jpg",
       "IMG_20140427_080756.jpg",
       "IMG_20140428_081657.jpg",
-      "IMG_20140429_075846.jpg",
       "IMG_20140429_075921.jpg",
       "IMG_20140430_074850.jpg",
       "IMG_20140501_074828.jpg",
@@ -227,7 +221,6 @@
       "IMG_20141028_074740.jpg",
       "IMG_20141029_090825.jpg",
       "IMG_20141030_094424.jpg",
-      "IMG_20141102_100829.jpg",
       "IMG_20141103_091305.jpg",
       "IMG_20141104_091735.jpg",
       "IMG_20141105_093034.jpg",
