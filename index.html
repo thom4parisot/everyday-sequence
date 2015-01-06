@@ -2,23 +2,44 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>2014</title>
+  <title>everyday-sequence</title>
 </head>
 <body>
+
+<div class="collections-list"></div>
 
 <canvas id="everyday"></canvas>
 
 <script src="bundle.js"></script>
 <script>
 (function(bundle){
-  var canvas = document.querySelector('canvas');
-  canvas.height = bundle.imageSize;
-  canvas.width = bundle.imageSize;
 
-  bundle.preload(bundle.getImages('./tmp'), onPreload);
+  renderCollectionActions(document.querySelector('.collections-list'), bundle.collections);
+
+  function renderCollectionActions(container, collections){
+    Object.keys(collections).forEach(function(collectionId){
+      var el = document.createElement('button');
+
+      el.innerHTML = collectionId;
+      el.addEventListener('click', displayCollection.bind(null, collections[collectionId], collectionId));
+
+      container.appendChild(el);
+    });
+  }
+
+  function displayCollection(collection, collectionId){
+    bundle.preload(collection, {
+      onPreload: onPreload,
+      srcMapper: bundle.getImages.bind(null, './tmp/' + collectionId)
+    });
+  }
 
   function onPreload(images){
-    var drawFn = bundle.getDrawFn(bundle.imageSize, bundle.imageSize, images.length);
+    var canvas = document.querySelector('canvas');
+    canvas.height = images[0].naturalHeight;
+    canvas.width = images[0].naturalWidth;
+
+    var drawFn = bundle.getDrawFn(canvas.height, canvas.width, images.length);
     var context = canvas.getContext('2d');
 
     images.forEach(function(image, i){
