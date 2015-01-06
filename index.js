@@ -1,33 +1,31 @@
 'use strict';
 
-var config = require('./package.json').config;
-
 module.exports = {
-  imageSize: config.imageWidth,
+  collections: require('./package.json').collections,
 
-  getImages: function(dir){
-    return config.images.map(function(src){
-      return dir + '/' + src;
-    });
+  getImages: function(dir, imageSrc){
+    return dir + '/' + imageSrc;
   },
 
-  preload: function(sources, callback){
+  preload: function(collection, options){
     var loadedImages = 0;
-    var numImages = sources.length;
+    var numImages = collection.images.length;
 
-    var images = sources.map(function(src){
-      var img = new Image();
+    var images = collection.images
+      .map(options.srcMapper)
+      .map(function(src){
+	var img = new Image();
 
-      img.onload = function() {
-        if(++loadedImages >= numImages) {
-          callback(images);
-        }
-      };
+	img.onload = function() {
+	  if(++loadedImages >= numImages) {
+	    options.onPreload(images);
+	  }
+	};
 
-      img.src = src;
+	img.src = src;
 
-      return img;
-    });
+	return img;
+      });
   },
   getDrawFn: function(height, width, imageCount){
     var segmentWidth = width / imageCount;
