@@ -6,7 +6,9 @@
   <style>
     html,
     body {
-        height: 100%;
+      font-family: Gill Sans, Verdana, sans-serif;
+      font-size: 115%;
+      height: 100%;
     }
 
     /* Scale canvas with resize attribute to full size */
@@ -19,10 +21,33 @@
       height: 100%;
     }
 
+    /* Collection lists */
+
+    .collections-list {
+      min-height: 2em;
+    }
+      .collection, .renderer {
+        float: left;
+      }
+
+      .renderer {
+        clear: left;
+        margin-right: .5em;
+        min-width: 8em;
+        text-align: right;
+      }
+
+      .collection {
+        margin: 0 .1em 0;
+      }
+
+    /* Loader */
+
     .loader {
       background-color: #ccc;
+      clear: both;
       height: 3px;
-      margin-bottom: 1.5em;
+      margin: 1.5em 0;
     }
     .loader-percentage {
       background-color: blue;

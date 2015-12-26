@@ -1,6 +1,8 @@
 # everyday-sequence
 
-Collection of sequenced images.
+Collection of sequenced images, assembled in a browser with `<canvas>`.
+
+![](preview.png)
 
 # Collections
 
