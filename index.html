@@ -3,50 +3,41 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>everyday-sequence</title>
+  <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    /* Scale canvas with resize attribute to full size */
+    .canvas-container,
+    canvas[resize] {
+      background-color: #ccc;
+      box-sizing: border-box;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .loader {
+      background-color: #ccc;
+      height: 3px;
+      margin-bottom: 1.5em;
+    }
+    .loader-percentage {
+      background-color: blue;
+      display: block;
+      height: 100%;
+      width: 0;
+    }
+  </style>
 </head>
 <body>
 
-<div class="collections-list"></div>
+<dl class="collections-list"></dl>
+<div class="loader"><span class="loader-percentage"></span></div>
+<canvas id="everyday" resize></canvas>
 
-<canvas id="everyday"></canvas>
-
-<script src="bundle.js"></script>
-<script>
-(function(bundle){
-
-  renderCollectionActions(document.querySelector('.collections-list'), bundle.collections);
-
-  function renderCollectionActions(container, collections){
-    Object.keys(collections).forEach(function(collectionId){
-      var el = document.createElement('button');
-
-      el.innerHTML = collectionId;
-      el.addEventListener('click', displayCollection.bind(null, collections[collectionId], collectionId));
-
-      container.appendChild(el);
-    });
-  }
-
-  function displayCollection(collection, collectionId){
-    bundle.preload(collection, {
-      onPreload: onPreload,
-      srcMapper: bundle.getImages.bind(null, './tmp/' + collectionId)
-    });
-  }
-
-  function onPreload(images){
-    var canvas = document.querySelector('canvas');
-    canvas.height = images[0].naturalHeight;
-    canvas.width = images[0].naturalWidth;
-
-    var drawFn = bundle.getDrawFn(canvas.height, canvas.width, images.length);
-    var context = canvas.getContext('2d');
-
-    images.forEach(function(image, i){
-      bundle.drawFrame(context, drawFn, image, i);
-    });
-  }
-})(bundle);
-</script>
+<script src="bundle.js" async></script>
 </body>
 </html>

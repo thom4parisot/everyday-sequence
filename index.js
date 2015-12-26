@@ -1,52 +1,34 @@
 'use strict';
 
-module.exports = {
-  collections: require('./package.json').collections,
+var h = require('hyperscript');
 
-  getImages: function(dir, imageSrc){
-    return dir + '/' + imageSrc;
-  },
+var collections = require('./package.json').collections;
 
-  preload: function(collection, options){
-    var loadedImages = 0;
-    var numImages = collection.images.length;
+var sequenceRenderer = require('./src/renderers/sequence');
+var sequenceFadedRenderer = require('./src/renderers/sequence-faded');
 
-    var images = collection.images
-      .map(options.srcMapper)
-      .map(function(src){
-	var img = new Image();
+window.addEventListener('load', function() {
+  renderCollectionActions(document.querySelector('.collections-list'), collections, {
+    'sequence': sequenceRenderer,
+    'sequence-faded': sequenceFadedRenderer
+  });
+});
 
-	img.onload = function() {
-	  if(++loadedImages >= numImages) {
-	    options.onPreload(images);
-	  }
-	};
+function renderCollectionActions(container, collections, renderers){
+  var collectionKeys = Object.keys(collections);
 
-	img.src = src;
+  Object.keys(renderers).forEach(function(rendererKey) {
+    var renderer = renderers[rendererKey];
 
-	return img;
-      });
-  },
-  getDrawFn: function(height, width, imageCount){
-    var segmentWidth = width / imageCount;
+    container.appendChild(h('dt.renderer', rendererKey));
 
-    return function(index){
-      return [
-        segmentWidth * (index), // sourceX
-        0, // sourceY
-        width, // sourceWidth,
-        height, // sourceHeight
-        segmentWidth * (index),
-        0,
-        width, // destWidth
-        height // destHeight
-      ];
-    };
-  },
-
-  drawFrame: function(context, drawFn, image, index){
-    var args = [image].concat(drawFn(index));
-
-    context.drawImage.apply(context, args);
-  }
-};
+    Object.keys(collections).forEach(function(collectionId){
+      var onClick = renderer.bind(null, collections[collectionId], 'tmp/' + collectionId);
+      
+      container.appendChild(h(
+        'dd.collection',
+        h('button', { 'onclick': onClick }, collectionId))
+      );
+    });
+  });
+}
