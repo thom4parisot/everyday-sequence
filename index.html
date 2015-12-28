@@ -11,14 +11,16 @@
       height: 100%;
     }
 
+    p, div, dd {
+      font-weight: 300;
+      font-size: .9rem;
+    }
+
     /* Scale canvas with resize attribute to full size */
-    .canvas-container,
-    canvas[resize] {
-      background-color: #ccc;
-      box-sizing: border-box;
-      padding: 20px;
-      width: 100%;
-      height: 100%;
+    .canvas-container {
+      background: #333;
+      border: 20px solid #ccc;
+      display: inline-block;
     }
 
     /* Collection lists */
@@ -26,18 +28,18 @@
     .collections-list {
       min-height: 2em;
     }
-      .collection, .renderer {
+      dd, dt {
         float: left;
       }
 
-      .renderer {
+      dt {
         clear: left;
         margin-right: .5em;
         min-width: 8em;
         text-align: right;
       }
 
-      .collection {
+      dd {
         margin: 0 .1em 0;
       }
 
@@ -59,9 +61,14 @@
 </head>
 <body>
 
-<dl class="collections-list"></dl>
+<dl class="collections-list">
+  <dt class="options">options</dt>
+  <dd class="options__values">
+    <input type="number" name="width" value="600">px
+  </dd>
+</dl>
 <div class="loader"><span class="loader-percentage"></span></div>
-<canvas id="everyday" resize></canvas>
+<div class="canvas-container"><canvas id="everyday"></canvas></div>
 
 <script src="bundle.js" async></script>
 </body>
