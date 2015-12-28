@@ -2,7 +2,7 @@
 
 var each = require('each-series');
 var paper = require('paper');
-var reverse = require('../sort').reverse;
+var reverse = require('alpha-sort').desc;
 var Loader = require('../loader');
 
 paper.setup(document.querySelector('canvas'));

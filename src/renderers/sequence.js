@@ -1,11 +1,12 @@
 'use strict';
 
 var each = require('each-series');
+var ascending = require('alpha-sort').asc;
 var Loader = require('../loader');
 
 module.exports = function(collection, collectionPath) {
   var numImages = collection.images.length;
-  var images = collection.images.map(resolvePath(collectionPath));
+  var images = collection.images.map(resolvePath(collectionPath)).sort(ascending);
 
   var canvas = document.querySelector('canvas');
   var context = canvas.getContext('2d');
