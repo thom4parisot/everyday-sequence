@@ -24,7 +24,7 @@
     "brfs": "^1.2.0",
     "each-series": "^1.0.0",
     "hyperscript": "^1.4.7",
-    "paper": "^0.9.25"
+    "paper": "^0.10.0"
   },
   "devDependencies": {
     "brfs": "^1.4.1",
